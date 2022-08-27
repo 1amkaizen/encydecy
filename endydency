@@ -1,0 +1,112 @@
+#!/bin/bash
+# COLOR
+Color_Off='\033[0m'       # Text Reset
+
+# Regular Colors
+Black='\033[0;30m'        # Black
+Red='\033[0;31m'          # Red
+Green='\033[0;32m'        # Green
+Yellow='\033[0;33m'       # Yellow
+Blue='\033[0;34m'         # Blue
+Purple='\033[0;35m'       # Purple
+Cyan='\033[0;36m'         # Cyan
+White='\033[0;37m'        # White
+
+# Bold
+BBlack='\033[1;30m'       # Black
+BRed='\033[1;31m'         # Red
+BGreen='\033[1;32m'       # Green
+BYellow='\033[1;33m'      # Yellow
+BBlue='\033[1;34m'        # Blue
+BPurple='\033[1;35m'      # Purple
+BCyan='\033[1;36m'        # Cyan
+BWhite='\033[1;37m'       # White
+
+nol=0
+satu=1
+dua=2
+tiga=3
+empat=4
+lima=5
+enam=6
+echo 
+echo -e "${BGreen} ███████╗███╗   ██╗ ██████╗██╗   ██╗██████╗ ███████╗ ██████╗██╗   ██╗ "
+echo ' ██╔════╝████╗  ██║██╔════╝╚██╗ ██╔╝██╔══██╗██╔════╝██╔════╝╚██╗ ██╔╝'
+echo ' █████╗  ██╔██╗ ██║██║      ╚████╔╝ ██║  ██║█████╗  ██║      ╚████╔╝ '
+echo ' ██╔══╝  ██║╚██╗██║██║       ╚██╔╝  ██║  ██║██╔══╝  ██║       ╚██╔╝  '
+echo ' ███████╗██║ ╚████║╚██████╗   ██║   ██████╔╝███████╗╚██████╗   ██║   '
+echo ' ╚══════╝╚═╝  ╚═══╝ ╚═════╝   ╚═╝   ╚═════╝ ╚══════╝ ╚═════╝   ╚═╝   '
+echo -e "${BRed}======================================================================"
+echo -ne "${BGreen}\t\t"`date`; echo""
+echo -ne "\t\ttools for encryption/decryption v1.0.0" ; echo''
+echo -ne "\t\tBy : Kaizen" ; echo''
+while true
+do
+echo -e "${BRed}==========================${BGreen}TYPE OF ENCYDECY${BRed}=========================="
+echo -e ${BRed}
+echo "[0].EXIT"
+echo "[1].ROT13"
+echo "[2].MD5"
+echo "[3].SHA256"
+echo "[4].BASE64"
+echo "[5].DECODE BASE64"
+echo "[6].SHA256 ON Base64"
+echo -e ${BGreen}
+read -p  "Pilih Jenis Enkripsi : " pilih
+echo
+if [ $nol = $pilih ]; then
+	exit
+elif [ $satu = $pilih ]; then
+	echo -e "${BRed}================================${BGreen}ROT13${BRed}================================${BGreen}"
+        read -p 'Masukkan code :' code
+        echo -e ${BGreen}
+	etext=` echo  $code | tr 'A-Za-z' 'N-ZA-Mn-za-m'`
+	echo -e "${BGreen}Output :${BWhite} $etext"
+	echo
+elif [ $dua = $pilih ]; then
+	echo -e "${BRed}=================================${BGreen}MD5${BRed}=================================${BGreen}"
+	read -p 'Masukkan code :' code
+	echo -e ${BGreen}
+	etext=` echo -n $code   | md5sum `
+	echo -e ${BWhite}
+	echo -e "${BGreen}Output :${BWhite} $etext"
+	echo
+elif [ $tiga = $pilih ]; then
+        echo -e "${BRed}=================================${BGreen}SHA256${BRed}=================================${BGreen}"
+        read -p 'Masukkan code :' code
+        echo -e ${BGreen}
+	etext=` echo $code | sha256sum`
+        echo -e ${BWhite}
+        echo -e "${BGreen}Output :${BWhite} $etext"
+        echo
+elif [ $empat = $pilih ]; then
+        echo -e "${BRed}=================================${BGreen}Base64${BRed}=================================${BGreen}"
+        read -p 'Masukkan code :' code
+        echo -e ${BGreen}
+	etext=`echo  $code | base64`
+        echo -e ${BWhite}
+        echo -e "${BGreen}Output :${BWhite} $etext"
+        echo
+elif [ $lima = $pilih ]; then
+        echo -e "${BRed}=================================${BGreen}DECODE Base64${BRed}=================================${BGreen}"
+        read -p 'Masukkan code :' code
+        echo -e ${BGreen}
+        etext=`echo $code | base64 --decode`
+        echo -e ${BWhite}
+        echo -e "${BGreen}Output :${BWhite} $etext"
+        echo
+elif [ $enam = $pilih ]; then
+        echo -e "${BRed}=================================${BGreen}SHA256 ON Base64${BRed}=================================${BGreen}"
+        read -p 'Masukkan code :' code
+        echo -e ${BGreen}
+	etext=` echo -n $code | openssl dgst -binary -sha256 | openssl base64`
+        echo -e ${BWhite}
+        echo -e "${BGreen}Output :${BWhite} $etext"
+        echo
+
+else
+        echo "Pilihan Salah"
+fi
+done
+
+
