@@ -52,7 +52,7 @@ echo "[4].BASE64"
 echo "[5].DECODE BASE64"
 echo "[6].SHA256 ON Base64"
 echo -e ${BGreen}
-read -p  "Pilih Jenis Enkripsi : " pilih
+read -p  "choose type : " pilih
 echo
 if [ $nol = $pilih ]; then
 	exit
