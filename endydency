@@ -1,7 +1,6 @@
 #!/bin/bash
 # COLOR
 Color_Off='\033[0m'       # Text Reset
-
 # Regular Colors
 Black='\033[0;30m'        # Black
 Red='\033[0;31m'          # Red
@@ -11,7 +10,6 @@ Blue='\033[0;34m'         # Blue
 Purple='\033[0;35m'       # Purple
 Cyan='\033[0;36m'         # Cyan
 White='\033[0;37m'        # White
-
 # Bold
 BBlack='\033[1;30m'       # Black
 BRed='\033[1;31m'         # Red
@@ -21,7 +19,10 @@ BBlue='\033[1;34m'        # Blue
 BPurple='\033[1;35m'      # Purple
 BCyan='\033[1;36m'        # Cyan
 BWhite='\033[1;37m'       # White
-
+#choose
+h=h
+l=l
+clear=clear
 nol=0
 satu=1
 dua=2
@@ -37,76 +38,97 @@ echo ' ██╔══╝  ██║╚██╗██║██║       ╚█�
 echo ' ███████╗██║ ╚████║╚██████╗   ██║   ██████╔╝███████╗╚██████╗   ██║   '
 echo ' ╚══════╝╚═╝  ╚═══╝ ╚═════╝   ╚═╝   ╚═════╝ ╚══════╝ ╚═════╝   ╚═╝   '
 echo -e "${BRed}======================================================================"
-echo -ne "${BGreen}\t\t"`date`; echo""
-echo -ne "\t\ttools for encryption/decryption v1.0.0" ; echo''
-echo -ne "\t\tBy : Kaizen" ; echo''
+echo -e "${BWhite}No | ${BBlue}Name    	         ${BWhite}| ${BBlue}Type    ${BWhite} |"
+echo -e "${BWhite}---+---------------------+----------+"
+echo -e "${BRed}0  ${BWhite}| ${BRed}EXIT    	         ${BWhite}|	    ${BWhite}|"
+echo -e "${BWhite}1  | ${BGreen}ROT13   	         ${BWhite}| ${BCyan}Hash     ${BWhite}|"
+echo -e "${BWhite}2  | ${BGreen}MD5     	         ${BWhite}| ${BCyan}Hash     ${BWhite}|"
+echo -e "${BWhite}3  | ${BGreen}SHA256  	         ${BWhite}| ${BYellow}Encrypt  ${BWhite}|"
+echo -e "${BWhite}4  | ${BGreen}BASE64  	         ${BWhite}| ${BYellow}Encrypt  ${BWhite}|"
+echo -e "${BWhite}5  | ${BGreen}BASE64  	         ${BWhite}| ${BPurple}Decrypt  ${BWhite}|"
+echo -e "${BWhite}6  | ${BGreen}SHA256 ON Base64    ${BWhite}| ${BYellow}Encrypt  ${BWhite}|"
 while true
 do
-echo -e "${BRed}==========================${BGreen}TYPE OF ENCYDECY${BRed}=========================="
-echo -e ${BRed}
-echo "[0].EXIT"
-echo "[1].ROT13"
-echo "[2].MD5"
-echo "[3].SHA256"
-echo "[4].BASE64"
-echo "[5].DECODE BASE64"
-echo "[6].SHA256 ON Base64"
-echo -e ${BGreen}
-read -p  "choose type : " pilih
-echo
+echo -e ${BWhite}
+read -p  "choose type > " pilih
 if [ $nol = $pilih ]; then
 	exit
 elif [ $satu = $pilih ]; then
-	echo -e "${BRed}================================${BGreen}ROT13${BRed}================================${BGreen}"
-        read -p 'Masukkan code :' code
-        echo -e ${BGreen}
+	echo -e "${BRed}================================${BGreen}ROT13${BRed}================================${BWhite}"
+        read -p 'Masukkan code > ' code
 	etext=` echo  $code | tr 'A-Za-z' 'N-ZA-Mn-za-m'`
-	echo -e "${BGreen}Output :${BWhite} $etext"
-	echo
+	echo -e "${BGreen}[+] Output :${BWhite} $etext"
 elif [ $dua = $pilih ]; then
-	echo -e "${BRed}=================================${BGreen}MD5${BRed}=================================${BGreen}"
-	read -p 'Masukkan code :' code
+	echo -e "${BRed}=================================${BGreen}MD5${BRed}=================================${BWhite}"
+	read -p 'Masukkan code > ' code
 	echo -e ${BGreen}
 	etext=` echo -n $code   | md5sum `
-	echo -e ${BWhite}
-	echo -e "${BGreen}Output :${BWhite} $etext"
-	echo
+	echo -e "${BGreen}[+] Output :${BWhite} $etext"
 elif [ $tiga = $pilih ]; then
-        echo -e "${BRed}=================================${BGreen}SHA256${BRed}=================================${BGreen}"
-        read -p 'Masukkan code :' code
+        echo -e "${BRed}=================================${BGreen}SHA256${BRed}=================================${BWhite}"
+        read -p 'Masukkan code > ' code
         echo -e ${BGreen}
 	etext=` echo $code | sha256sum`
         echo -e ${BWhite}
-        echo -e "${BGreen}Output :${BWhite} $etext"
-        echo
+        echo -e "${BGreen}[+] Output :${BWhite} $etext"
 elif [ $empat = $pilih ]; then
-        echo -e "${BRed}=================================${BGreen}Base64${BRed}=================================${BGreen}"
-        read -p 'Masukkan code :' code
+        echo -e "${BRed}=================================${BGreen}Base64${BRed}=================================${BWhite}"
+        read -p 'Masukkan code > ' code
         echo -e ${BGreen}
 	etext=`echo  $code | base64`
         echo -e ${BWhite}
-        echo -e "${BGreen}Output :${BWhite} $etext"
-        echo
+        echo -e "${BGreen}[+] Output :${BWhite} $etext"
 elif [ $lima = $pilih ]; then
-        echo -e "${BRed}=================================${BGreen}DECODE Base64${BRed}=================================${BGreen}"
-        read -p 'Masukkan code :' code
+        echo -e "${BRed}=================================${BGreen}DECODE Base64${BRed}=================================${BWhite}"
+        read -p 'Masukkan code > ' code
         echo -e ${BGreen}
         etext=`echo $code | base64 --decode`
         echo -e ${BWhite}
-        echo -e "${BGreen}Output :${BWhite} $etext"
-        echo
+        echo -e "${BGreen}[+] Output :${BWhite} $etext"
 elif [ $enam = $pilih ]; then
-        echo -e "${BRed}=================================${BGreen}SHA256 ON Base64${BRed}=================================${BGreen}"
-        read -p 'Masukkan code :' code
+        echo -e "${BRed}=================================${BGreen}SHA256 ON Base64${BRed}=================================${BWhite}"
+        read -p 'Masukkan code > ' code
         echo -e ${BGreen}
 	etext=` echo -n $code | openssl dgst -binary -sha256 | openssl base64`
         echo -e ${BWhite}
-        echo -e "${BGreen}Output :${BWhite} $etext"
-        echo
+        echo -e "${BGreen}[+] Output :${BWhite} $etext"
+
+elif [ $clear = $pilih ]; then
+	clear
+
+        echo -e "${BWhite}No | ${BBlue}Name              ${BWhite}  | ${BBlue}Type    ${BWhite} |"
+        echo -e "${BWhite}---+---------------------+----------+"
+        echo -e "${BRed}0  ${BWhite}| ${BRed}EXIT                ${BWhite}|         ${BWhite} |"
+        echo -e "${BWhite}1  | ${BGreen}ROT13               ${BWhite}| ${BCyan}Hash     ${BWhite}|"
+        echo -e "${BWhite}2  | ${BGreen}MD5                 ${BWhite}| ${BCyan}Hash     ${BWhite}|"
+        echo -e "${BWhite}3  | ${BGreen}SHA256              ${BWhite}| ${BYellow}Encrypt  ${BWhite}|"
+        echo -e  "${BWhite}4  | ${BGreen}BASE64              ${BWhite}| ${BYellow}Encrypt  ${BWhite}|"
+        echo -e "${BWhite}5  | ${BGreen}BASE64              ${BWhite}| ${BPurple}Decrypt  ${BWhite}|"
+        echo -e "${BWhite}6  | ${BGreen}SHA256 ON Base64    ${BWhite}| ${BYellow}Encrypt  ${BWhite}|"
+
+
+
+elif [ $l = $pilih ]; then
+	echo -e "${BWhite}No | ${BBlue}Name              ${BWhite}  | ${BBlue}Type    ${BWhite} |"
+	echo -e "${BWhite}---+---------------------+----------+"
+	echo -e "${BRed}0  ${BWhite}| ${BRed}EXIT                ${BWhite}|         ${BWhite} |"
+	echo -e "${BWhite}1  | ${BGreen}ROT13               ${BWhite}| ${BCyan}Hash     ${BWhite}|"
+	echo -e "${BWhite}2  | ${BGreen}MD5                 ${BWhite}| ${BCyan}Hash     ${BWhite}|"
+	echo -e "${BWhite}3  | ${BGreen}SHA256              ${BWhite}| ${BYellow}Encrypt  ${BWhite}|"
+	echo -e	 "${BWhite}4  | ${BGreen}BASE64              ${BWhite}| ${BYellow}Encrypt  ${BWhite}|"
+	echo -e "${BWhite}5  | ${BGreen}BASE64              ${BWhite}| ${BPurple}Decrypt  ${BWhite}|"
+	echo -e "${BWhite}6  | ${BGreen}SHA256 ON Base64    ${BWhite}| ${BYellow}Encrypt  ${BWhite}|"
+
+elif [ $h = $pilih  ]; then
+	echo
+	echo "		command			  Desc"
+	echo "		---------		--------"
+	echo "		0			  exit"
+	echo "		h			  Help"
+	echo "		l			  list	"
+	echo "		clear			  clear"
 
 else
-        echo "Pilihan Salah"
+        echo -e "${BRed}Pilihan Salah"
 fi
 done
-
-
